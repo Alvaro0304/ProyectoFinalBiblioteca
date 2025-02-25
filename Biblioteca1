@@ -1,0 +1,111 @@
+class Libro:
+    def __init__(self, titulo, autor, isbn):
+        self.titulo = titulo
+        self.autor = autor
+        self.isbn = isbn
+        self.disponible = True
+
+    def agregar(self):
+        # Método para agregar un nuevo libro
+        print(f"Se ha agregado el libro: {self.titulo} de {self.autor} (ISBN: {self.isbn})")
+
+    def prestar(self):
+        # Método para prestar el libro, cambiando su disponibilidad
+        if self.disponible:
+            self.disponible = False
+            print(f"El libro '{self.titulo}' ha sido prestado.")
+        else:
+            print(f"El libro '{self.titulo}' ya está prestado.")
+
+    def devolver(self):
+        # Método para devolver el libro, cambiando su disponibilidad
+        if not self.disponible:
+            self.disponible = True
+            print(f"El libro '{self.titulo}' ha sido devuelto.")
+        else:
+            print(f"El libro '{self.titulo}' ya está disponible.")
+
+    def mostrar(self):
+        # Método para mostrar los datos del libro
+        disponibilidad = "disponible" if self.disponible else "no disponible"
+        return f"Título: {self.titulo}, Autor: {self.autor}, ISBN: {self.isbn}, Estado: {disponibilidad}"
+
+    def buscar(self, isbn):
+        # Método para buscar un libro por ISBN
+        if self.isbn == isbn:
+            return self.mostrar()
+        return None
+
+
+# Gestión de la biblioteca
+def menu():
+    biblioteca = []
+    while True:
+        # Mostrar mensaje de bienvenida
+        print("\nBienvenido al Sistema de Gestión de Biblioteca")
+        
+        # Menú de opciones
+        print("\nMenú de opciones:")
+        print("1) Agregar un nuevo libro")
+        print("2) Prestar un libro")
+        print("3) Devolver un libro")
+        print("4) Mostrar todos los libros")
+        print("5) Salir")
+        
+        opcion = input("Seleccione una opción: ").lower()
+
+        if opcion == 'a':
+            # Agregar un libro
+            titulo = input("Ingrese el título del libro: ")
+            autor = input("Ingrese el autor del libro: ")
+            isbn = input("Ingrese el ISBN del libro: ")
+            nuevo_libro = Libro(titulo, autor, isbn)
+            biblioteca.append(nuevo_libro)
+            nuevo_libro.agregar()
+
+        elif opcion == 'b':
+            # Prestar un libro
+            isbn = input("Ingrese el ISBN del libro que desea prestar: ")
+            libro_encontrado = None
+            for libro in biblioteca:
+                if libro.buscar(isbn):
+                    libro_encontrado = libro
+                    break
+            if libro_encontrado:
+                libro_encontrado.prestar()
+            else:
+                print(f"No se encontró un libro con el ISBN {isbn}.")
+
+        elif opcion == 'c':
+            # Devolver un libro
+            isbn = input("Ingrese el ISBN del libro que desea devolver: ")
+            libro_encontrado = None
+            for libro in biblioteca:
+                if libro.buscar(isbn):
+                    libro_encontrado = libro
+                    break
+            if libro_encontrado:
+                libro_encontrado.devolver()
+            else:
+                print(f"No se encontró un libro con el ISBN {isbn}.")
+
+        elif opcion == 'd':
+            # Mostrar todos los libros
+            if biblioteca:
+                print("\nLista de libros en la biblioteca:")
+                for libro in biblioteca:
+                    print(libro.mostrar())
+            else:
+                print("No hay libros en la biblioteca.")
+
+        elif opcion == 'e':
+            # Salir del programa
+            print("Gracias por usar el sistema de gestión de la biblioteca.")
+            break
+
+        else:
+            print("Opción inválida, por favor intente de nuevo.")
+
+
+if __name__ == "__main__":
+    menu()
