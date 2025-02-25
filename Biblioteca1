@@ -46,10 +46,10 @@ def menu():
         
         # Menú de opciones
         print("\nMenú de opciones:")
-        print("1) Agregar un nuevo libro")
-        print("2) Prestar un libro")
-        print("3) Devolver un libro")
-        print("4) Mostrar todos los libros")
+        print("1) Agregar nuevo libro")
+        print("2) Prestar libro")
+        print("3) Devolver libro")
+        print("4) Mostrar libros")
         print("5) Salir")
         
         opcion = input("Seleccione una opción: ").lower()
