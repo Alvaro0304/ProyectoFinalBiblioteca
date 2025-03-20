@@ -75,7 +75,7 @@ def menu():
             if libro_encontrado:
                 libro_encontrado.prestar()
             else:
-                print(f"No se encontró un libro con el ISBN {isbn}.")
+                print(f"No se encontró el libro con el ISBN {isbn}.")
 
         elif opcion == '3':
             # Devolver un libro
@@ -88,7 +88,7 @@ def menu():
             if libro_encontrado:
                 libro_encontrado.devolver()
             else:
-                print(f"No se encontró un libro con el ISBN {isbn}.")
+                print(f"No se encontró el libro con el ISBN {isbn}.")
 
         elif opcion == '4':
             # Mostrar todos los libros
@@ -105,7 +105,7 @@ def menu():
             break
 
         else:
-            print("Opción inválida, por favor intente de nuevo.")
+            print("Opción inválida, por favor intentelo de nuevo.")
 
 
 if __name__ == "__main__":
